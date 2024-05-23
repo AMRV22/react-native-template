@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# Bienvenido a tu aplicación Expo 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este es un proyecto [Expo](https://expo.dev) creado con [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+## Comenzando
 
-1. Install dependencies
+1. Instala las dependencias
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Inicia la aplicación
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Configuración de Husky
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Husky es una herramienta que nos permite ejecutar scripts antes de los commits (pre-commit) y antes de los push (pre-push). Para configurar Husky, sigue estos pasos:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. Instala Husky en tu proyecto:
 
-## Get a fresh project
+   ```bash
+   npm install husky --save-dev
+   ```
 
-When you're ready, run:
+2. Ejecuta el script de preparación:
+
+   ```bash
+   npm run prepare
+   ```
+
+Esto creará dos archivos en el directorio `.husky`: `pre-commit` y `pre-push`. Estos archivos se ejecutarán antes de cada commit y push, respectivamente.
+
+El contenido de `pre-commit` debería ser:
 
 ```bash
-npm run reset-project
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/husky.sh"
+
+echo '\n\nPlease be patient, this may take a while...\n'
+
+echo 'First, lets check the code style or linting errors :art:'
+
+npm run lint || {
+  echo 'Linting failed, please fix the errors and try again'
+  exit 1
+}
+
+echo "\n\nNow we'll run some task for you :robot_face:"
+
+echo '\n\nAll good, you can commit now :tada:'
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Y el contenido de `pre-push` debería ser:
 
-## Learn more
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/husky.sh"
 
-To learn more about developing your project with Expo, look at the following resources:
+echo "\n\nLet's check if the tests are passing 🧪"
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Con esta configuración, Husky ejecutará ESLint antes de cada commit y ejecutará tus pruebas antes de cada push. Si alguna de estas tareas falla, el commit o push se abortará.
