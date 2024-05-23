@@ -1,0 +1,4 @@
+{
+    "eslint.codeActionsOnSave.rules": null,
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+}

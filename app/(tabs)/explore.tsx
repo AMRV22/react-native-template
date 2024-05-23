@@ -62,7 +62,7 @@ export default function TabTwoScreen() {
         <ThemedText>
           This template has light and dark mode support. The{' '}
           <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
+          what the user&rsquo;s current color scheme is, and so you can adjust UI colors accordingly.
         </ThemedText>
         <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
           <ThemedText type="link">Learn more</ThemedText>
@@ -81,7 +81,7 @@ export default function TabTwoScreen() {
               The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
               component provides a parallax effect for the header image.
             </ThemedText>
-          ),
+          )
         })}
       </Collapsible>
     </ParallaxScrollView>
@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
     color: '#808080',
     bottom: -90,
     left: -35,
-    position: 'absolute',
+    position: 'absolute'
   },
   titleContainer: {
     flexDirection: 'row',
-    gap: 8,
-  },
+    gap: 8
+  }
 });
